@@ -90,7 +90,7 @@ function operation(op) {
 }
 
 function decimal(argument) {
-  var localDecimalMemory = display.value;
+  let localDecimalMemory = display.value;
 
   if (MemoryNewNumber) {
     localDecimalMemory = "0.";
@@ -101,8 +101,7 @@ function decimal(argument) {
     }
   }
   display.value = localDecimalMemory;
-  console.log("Клик по .");
-}
+ }
 
 function clear(id) {
   if (id === "cleanErase") {
