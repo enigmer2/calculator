@@ -50,14 +50,13 @@ resultBtn.addEventListener("click", result);
 function numberPress(number) {
   if (MemoryNewNumber) {
     display.value = number;
+    displayMem.value += number;
     MemoryNewNumber = false;
   } else {
     if (display.value === "0") {
       display.value = number;
-      displayMem.value = number;
     } else {
       display.value += number;
-      displayMem.value += number;
     }
   }
 }
