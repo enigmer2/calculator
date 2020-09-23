@@ -55,15 +55,17 @@ function numberPress(number) {
   } else {
     if (display.value === "0") {
       display.value = number;
+      displayMem.value += number;
     } else {
       display.value += number;
+      displayMem.value += number;
     }
   }
 }
 function operation(op) {
   localOperationMemory = display.value;
 
-  if (MemoryNewNumber) {
+  if (MemoryNewNumber && MemoryPendingOperation !== "=") {
     display.value = MemoryCurrentNumber;
     displayMem.value += MemoryPendingOperation;
   } else {
@@ -80,11 +82,11 @@ function operation(op) {
     } else {
       MemoryCurrentNumber = parseFloat(localOperationMemory);
     }
-    display.value = MemoryCurrentNumber;
+        display.value = MemoryCurrentNumber;
+    displayMem.value = MemoryCurrentNumber;
     MemoryPendingOperation = op;
   }
-  console.log(op);
-  displayMem.value += MemoryPendingOperation;
+    displayMem.value += MemoryPendingOperation;
 }
 
 function decimal(argument) {
