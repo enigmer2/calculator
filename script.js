@@ -1,19 +1,19 @@
-function decimal() {}
-//фильтрация только цыфры
-function filter_input(e, regexp) {
-  e = e || window.event;
-  let target = e.target || e.srcElement;
-  let isIE = document.all;
+// function decimal() {}
+// //фильтрация только цыфры
+// function filter_input(e, regexp) {
+//   e = e || window.event;
+//   let target = e.target || e.srcElement;
+//   let isIE = document.all;
 
-  if (target.tagName.toUpperCase() == "INPUT") {
-    let code = isIE ? e.keyCode : e.which;
-    if (code < 32 || e.ctrlKey || e.altKey) return true;
+//   if (target.tagName.toUpperCase() == "INPUT") {
+//     let code = isIE ? e.keyCode : e.which;
+//     if (code < 32 || e.ctrlKey || e.altKey) return true;
 
-    let char = String.fromCharCode(code);
-    if (!regexp.test(char)) return false;
-  }
-  return true;
-}
+//     let char = String.fromCharCode(code);
+//     if (!regexp.test(char)) return false;
+//   }
+//   return true;
+// }
 
 let numbers = document.querySelectorAll(".number"),
   operations = document.querySelectorAll(".operations"),
