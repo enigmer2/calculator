@@ -1,45 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Calculator</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    <h1>
+      поддерживается ввод только
+      <!--с виртуальной клавитуры и-->
+      NumКлавиш
+    </h1>
     <div class="calculator-body">
-        <div class="display">
-            <!--экран-->
-            <textarea id="displayMemory" value="" class="display-operation code" placeholder="память" disabled rows="2"
-                class=""></textarea>
+      <div class="display">
+        <!--экран-->
+        <input
+          id="display-memory"
+          value=""
+          class="display-operation code"
+          placeholder="память"
+          type="text"
+        >
 
-            <input id="displayResult" maxlength="18" class="display-answer" onkeypress="return filter_input(event,/\d/)"
-                type="text">
-
-        </div>
-        <button id="cleanErase" class="button clean">CE</button>
-        <button id="clean" class="button clean">C</button>
-        <button id="divide" class="button operations">/</button>
-        <button id="multiply" class="button operations">*</button>
-        <button id="seven" class="button number">7</button>
-        <button id="eight" class="button number">8</button>
-        <button id="nine" class="button number">9</button>
-        <button id="minus" class="button operations">-</button>
-        <button id="four" class="button number">4</button>
-        <button id="five" class="button number">5</button>
-        <button id="six" class="button number">6</button>
-        <button id="plus" class="button operations">+</button>
-        <button id="one" class="button number">1</button>
-        <button id="two" class="button number">2</button>
-        <button id="three" class="button number">3</button>
-        <button id="zero" class="button number big-O">0</button>
-        <button id="decimal" class="button decimal">.</button>
-        <button id="result" class="button operations big-result">=</button>
+        <input
+          id="display-result"
+          maxlength="18"
+          class="display-answer"
+          type="text"
+        />
+      </div>
+<!--
+      <button id="clean-erase" class="button clean">CE</button>
+      <button id="clean" class="button clean">C</button>
+      <button id="divide" class="button operations">/</button>
+      <button id="multiply" class="button operations">*</button>
+      <button id="seven" class="button number">7</button>
+      <button id="eight" class="button number">8</button>
+      <button id="nine" class="button number">9</button>
+      <button id="minus" class="button operations">-</button>
+      <button id="four" class="button number">4</button>
+      <button id="five" class="button number">5</button>
+      <button id="six" class="button number">6</button>
+      <button id="plus" class="button operations">+</button>
+      <button id="one" class="button number">1</button>
+      <button id="two" class="button number">2</button>
+      <button id="three" class="button number">3</button>
+      <button id="zero" class="button number big-O">0</button>
+      <button id="decimal" class="button decimal">.</button>
+      <button id="result" class="button operations big-result">=</button>
     </div>
-
+-->
     <script type="text/javascript" src="script.js"></script>
-</body>
-
+  </body>
 </html>
