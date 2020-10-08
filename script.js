@@ -64,23 +64,36 @@ function numberPress(number) {
 function operationPress(op) {
   localOperationMemory = display.value;
 
-  if (MemoryNewNumber && MemoryPendingOperation !== "=") {
-    display.value = MemoryCurrentNumber;
+  if (bodyStyle.className === "erm-math-class") {
+    displayMemory.value = " Лукашеночка набрал 80,1 % голосов и";
+    display.value = "и дальше можете не считать ";
   } else {
-    MemoryNewNumber = true;
-    if (MemoryPendingOperation === "+") {
-      MemoryCurrentNumber += +localOperationMemory;
-    } else if (MemoryPendingOperation === "-") {
-      MemoryCurrentNumber -= +localOperationMemory;
-    } else if (MemoryPendingOperation === "*") {
-      MemoryCurrentNumber *= +localOperationMemory;
-    } else if (MemoryPendingOperation === "/") {
-      MemoryCurrentNumber /= +localOperationMemory;
+    if (MemoryNewNumber && MemoryPendingOperation !== "=") {
+      display.value = MemoryCurrentNumber;
     } else {
-      MemoryCurrentNumber = +localOperationMemory;
+      MemoryNewNumber = true;
+      if (MemoryPendingOperation === "+") {
+        MemoryCurrentNumber += +localOperationMemory;
+        operatorChange("+");
+        displayEveryData();
+      } else if (MemoryPendingOperation === "-") {
+        MemoryCurrentNumber -= +localOperationMemory;
+        operatorChange("-");
+        displayEveryData();
+      } else if (MemoryPendingOperation === "*") {
+        MemoryCurrentNumber *= +localOperationMemory;
+        operatorChange("*");
+        displayEveryData();
+      } else if (MemoryPendingOperation === "/") {
+        MemoryCurrentNumber /= +localOperationMemory;
+        operatorChange("/");
+        displayEveryData();
+      } else {
+        MemoryCurrentNumber = +localOperationMemory;
+      }
+      display.value = MemoryCurrentNumber;
+      MemoryPendingOperation = op;
     }
-    display.value = MemoryCurrentNumber;
-    MemoryPendingOperation = op;
   }
 }
 
@@ -96,7 +109,6 @@ function decimal(argument) {
     }
   }
   display.value = localDecimalMemory;
-  console.log("Клик по ");
 }
 
 function clear(id) {
@@ -228,8 +240,6 @@ function pressNumber(n) {
   }
 }
 
-
-
 function operatorChange(o) {
   if (operandSecond === "") {
     switch (o) {
@@ -283,8 +293,8 @@ function operatorChange(o) {
 
 function displayEveryData(f, o, s) {
   if (bodyStyle.className === "erm-math-class") {
-    displayMemory.value = "  Лукашеночка победил по ашчушчениям ";
-    display.value = " и набрал 80,1 % голосов";
+    displayMemory.value = " Лукашеночка набрал 80,1 % голосов и";
+    display.value = "и дальше можете не считать ";
   } else {
     displaySub = operandFirst + " " + operator + " " + operandSecond + "";
     display.value = displaySub;
@@ -296,6 +306,7 @@ function answerResult() {
   displayMemory.value =
     operandFirst + " " + operator + " " + operandSecond + " = ";
   display.value = answer;
+  
   operandFirst = answer;
   operator = "";
   operandSecond = "";
