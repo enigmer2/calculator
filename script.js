@@ -1,6 +1,7 @@
 let classErm = document.getElementById("hidden-calc");
 let bodyStyle = document.body;
 
+// код из примера
 let numbers = document.querySelectorAll(".number");
 let operations = document.querySelectorAll(".operations");
 let clearBtns = document.querySelectorAll(".clear-btn");
@@ -9,6 +10,7 @@ let result = document.getElementById("result");
 let MemoryCurrentNumber = 0;
 let MemoryNewNumber = false;
 let MemoryPendingOperation = "";
+// выше код из примера
 
 let display = document.querySelector("#display-result");
 let displayMemory = document.querySelector("#display-memory");
@@ -83,7 +85,7 @@ function operationPress(op) {
 }
 
 function decimal(argument) {
-  var localDecimalMemory = display.value;
+  let localDecimalMemory = display.value;
 
   if (MemoryNewNumber) {
     localDecimalMemory = "0.";
@@ -114,52 +116,52 @@ function numPress(e) {
   switch (e.keyCode) {
     case 96: // если нажата клавиша Num0
       console.log("нажата кнопка Num0");
-      number("0");
+      pressNumber("0");
       displayEveryData(); // вызывает решение и заносит его в display
       break;
     case 97: // если нажата клавиша Num1
       console.log("нажата кнопка Num1");
-      number("1");
+      pressNumber("1");
       displayEveryData(); // вызывает решение и заносит его в display
       break;
     case 98: // если нажата клавиша Num2
       console.log("нажата кнопка Num2");
-      number("2");
+      pressNumber("2");
       displayEveryData(); // вызывает решение и заносит его в display
       break;
     case 99: // если нажата клавиша Num3
       console.log("нажата кнопка Num3");
-      number("3");
+      pressNumber("3");
       displayEveryData(); // вызывает решение и заносит его в display
       break;
     case 100: // если нажата клавиша Num4
       console.log("нажата кнопка Num4");
-      number("4");
+      pressNumber("4");
       displayEveryData(); // вызывает решение и заносит его в display
       break;
     case 101: // если нажата клавиша Num5
       console.log("нажата кнопка Num5");
-      number("5");
+      pressNumber("5");
       displayEveryData(); // вызывает решение и заносит его в display
       break;
     case 102: // если нажата клавиша Num6
       console.log("нажата кнопка Num6");
-      number("6");
+      pressNumber("6");
       displayEveryData(); // вызывает решение и заносит его в display
       break;
     case 103: // если нажата клавиша Num7
       console.log("нажата кнопка Num7");
-      number("7");
+      pressNumber("7");
       displayEveryData(); // вызывает решение и заносит его в display
       break;
     case 104: // если нажата клавиша Num8
       console.log("нажата кнопка Num8");
-      number("8");
+      pressNumber("8");
       displayEveryData(); // вызывает решение и заносит его в display
       break;
     case 105: // если нажата клавиша Num9
       console.log("нажата кнопка Num9");
-      number("9");
+      pressNumber("9");
       displayEveryData(); // вызывает решение и заносит его в display
       break;
     case 106: // если нажата клавиша Num *
@@ -218,7 +220,7 @@ function numPress(e) {
   }
 }
 
-function number(n) {
+function pressNumber(n) {
   if (operator !== "") {
     operandSecond += `${n}`;
   } else {
@@ -226,9 +228,7 @@ function number(n) {
   }
 }
 
-function pressNumber(number) {
-  console.log(number);
-}
+
 
 function operatorChange(o) {
   if (operandSecond === "") {
