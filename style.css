@@ -57,7 +57,7 @@ body {
   /* caret-color: transparent; */
   outline: none;
   background-color: #cd0000;
-  font-size: xx-large;
+  font-size: x-large;
   color: #fff;
 }
 
@@ -108,10 +108,7 @@ h1 {
   left: -10px;
   z-index: -1;
   border-radius: 8px;
-  background: linear-gradient(
-    rgba(200, 200, 200, 0.5),
-    rgba(240, 240, 240, 0.5)
-  );
+  background: linear-gradient(rgba(0, 0, 0, 0, 1), rgba(0, 0, 0, 0, 1));
   transition: all 0.5s;
 }
 
@@ -141,57 +138,6 @@ button:active {
   line-height: 2.1em;
   background: linear-gradient(#bac6cf, #c5d3de 20%, #8c7171);
   box-shadow: 0 -1px rgba(255, 255, 255, 0.4) inset;
-  transition: all 0.5s;
-}
-
-.erm-math-class {
-  text-align: center;
-  cursor: pointer;
-  background-color: red;
-}
-.erm-math-class > div {
-  color: #fff;
-}
-.erm-math-class-btn {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  color: rgb(255, 255, 255);
-  outline: none;
-  border: 1px solid rgba(243, 210, 210, 0.8);
-  border-top-color: rgba(0, 0, 0, 0.3);
-  background: rgb(206, 220, 231)
-    linear-gradient(rgb(143, 192, 138), rgb(41, 80, 25));
-  box-shadow: 0 -1px rgba(10, 28, 12, 0.9) inset,
-    0 1px rgba(160, 230, 166, 0.5) inset;
-  transition: all 0.5s;
-}
-.erm-math-class-btn:hover {
-  background: linear-gradient(#d2ead4, #85b481);
-  transition: all 0.5s;
-}
-.erm-math-class-btn:active {
-  line-height: 2.1em;
-  background: linear-gradient(#bdcfba, #c9dec5 20%, #768c71);
-  box-shadow: 0 -1px rgba(255, 255, 255, 0.4) inset;
-  transition: all 0.5s;
-}
-.erm-math-class-btn:before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  bottom: -10px;
-  left: -10px;
-  z-index: -1;
-  border-radius: 8px;
-  background: linear-gradient(
-    rgba(200, 200, 200, 0.5),
-    rgba(240, 240, 240, 0.5)
-  );
   transition: all 0.5s;
 }
 

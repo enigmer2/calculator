@@ -8,6 +8,7 @@ let display = document.querySelector("#display-result");       // Выбор д�
 let displayMemory = document.querySelector("#display-memory"); // Выбор дисплэя истории
 let answer = "";                                               // хранение ответа
 
+
 function buttonPress(e) {
   if (e.keyCode === undefined) {
     presedButton = e.target.textContent; 
@@ -57,20 +58,32 @@ function buttonPress(e) {
       pressNumber("9");
     break;
     case "*":
-    case 106:                                 // если нажата клавиша  *
+    case 106:  
+    if (operandFirst === "") {
+      operandFirst = "0";
+     }                                        // если нажата клавиша  *
       operatorChange("*")
     break;
     case "+":  
-    case 107:                                 // если нажата клавиша  +
+    case 107:   
+    if (operandFirst === "") {
+      operandFirst = "0";
+     }                                        // если нажата клавиша  +
       operatorChange("+")
     break;
     case "/":
-    case 111:                                 // если нажата клавиша  /
-      operatorChange("/")
+    case 111:  
+      if (operandFirst === "") {
+       operandFirst = "0";
+      }                         
+      operatorChange("/")                     // если нажата клавиша /
     break;
     case "-":
-    case 109:                                 // если нажата клавиша  -
-      operatorChange("-")
+    case 109: 
+      if (operandFirst === "") {
+        operandFirst = "0";
+      }                         
+      operatorChange("-")                     // если нажата клавиша  -
     break;
     case ",":
     case 108:                                 // если нажата клавиша  ,
@@ -87,17 +100,34 @@ function buttonPress(e) {
       displayMemory.value = "0";
     break;
     case "=":
-    case 13:                                  // если нажата клавиша enter
-      answer =  eval(+operandFirst + operator + +operandSecond);
-      display.value = answer;
+    case 13: 
+      operatorChange("=");
     break;
     case "CE":
-    case 8:                                   // если нажата клавиша backspace удаляет второй операнд
-      operandSecond = "";
+    case 8:
+      if (operandSecond === "") {
+        operandFirst = "";
+        operator = "";
+      } else {
+        operandSecond = ""; 
+      }                                   // если нажата клавиша backspace удаляет текущий операнд
+      
     break;
   }
   displayMemory.value = operandFirst + "" + operator + "" + operandSecond + "";
   display.value = answer;
+  if (display.value === "NaN") {
+    display.value = "на ноль делить нельзя";
+    operandFirst = "";
+    operator = "";
+  } else
+  {
+    if (display.value === "Infinity") {
+      display.value = "на ноль делить нельзя";
+      operandFirst = "";
+      operator = "";
+    }
+  }
 }
 
 // листнер - нажатия клавишь на Num-клавитуре
@@ -129,7 +159,18 @@ function operatorChange(o) {
         operator = "*";                       // перезапиcываем operator
         operandSecond = "";
         break;
+      case "=":
+        if (operandSecond === "") {
+          if (operandFirst === "") {
+            display.value = "вводите значения";
+          }
+          operandSecond = "0";
+        }                                  // если нажата клавиша enter
+          answer =  eval(+operandFirst + operator + +operandSecond);
+          display.value = answer;
+        break;
     }
+    
   } else {
     answer =  eval(+operandFirst + operator + +operandSecond);
     switch (o) {
@@ -153,6 +194,16 @@ function operatorChange(o) {
         operator = "*";                       // перезапиcываем operator
         operandSecond = "";                   // обнуляем второй операнд
         break;
+      case "=":
+        if (operandSecond === "") {
+          if (operandFirst === "") {
+            display.value = "вводите значения";
+          }
+          operandSecond = "0";
+        }                                  // если нажата клавиша enter
+          answer =  eval(+operandFirst + operator + +operandSecond);
+          display.value = answer;
+        break;
     }
   }
 }
@@ -168,12 +219,12 @@ function pressNumber(n) {
         } 
       } 
       else {
-        operandSecond += `${n}`;
+        operandSecond = `${n}`;
       }
     } else {
        if (n === ".")  {
           if (operandSecond.indexOf(".") === -1) { 
-            operandSecond += `${n}`; 
+            operandSecond += "0" + `${n}`; 
         } 
       } 
       else {
@@ -190,12 +241,12 @@ function pressNumber(n) {
         } 
       } 
       else {
-        operandFirst += `${n}`;
+        operandFirst = `${n}`;
       }
     } else {
        if (n === ".")  {
           if (operandFirst.indexOf(".") === -1) { 
-            operandFirst += `${n}`; 
+            operandFirst += "0" + `${n}`; 
         } 
       } 
       else {
@@ -204,3 +255,10 @@ function pressNumber(n) {
     }
   }
 }
+
+/** 
+ *  
+ * 
+ *     
+ * 
+*/
