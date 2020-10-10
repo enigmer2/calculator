@@ -7,7 +7,7 @@ let operandSecond = "";                                        // хранени
 let display = document.querySelector("#display-result");       // Выбор дисплэя ввода
 let displayMemory = document.querySelector("#display-memory"); // Выбор дисплэя истории
 let answer = "";                                               // хранение ответа
-
+let enterFlag = false;                                         // был ли нажато равно 
 
 function buttonPress(e) {
   if (e.keyCode === undefined) {
@@ -108,26 +108,15 @@ function buttonPress(e) {
       if (operandSecond === "") {
         operandFirst = "";
         operator = "";
+        display.value = "";
       } else {
         operandSecond = ""; 
       }                                   // если нажата клавиша backspace удаляет текущий операнд
       
     break;
   }
+   // вычисления после нажатия кнопки
   displayMemory.value = operandFirst + "" + operator + "" + operandSecond + "";
-  display.value = answer;
-  if (display.value === "NaN") {
-    display.value = "на ноль делить нельзя";
-    operandFirst = "";
-    operator = "";
-  } else
-  {
-    if (display.value === "Infinity") {
-      display.value = "на ноль делить нельзя";
-      operandFirst = "";
-      operator = "";
-    }
-  }
 }
 
 // листнер - нажатия клавишь на Num-клавитуре
@@ -159,20 +148,19 @@ function operatorChange(o) {
         operator = "*";                       // перезапиcываем operator
         operandSecond = "";
         break;
-      case "=":
-        if (operandSecond === "") {
-          if (operandFirst === "") {
-            display.value = "вводите значения";
-          }
-          operandSecond = "0";
-        }                                  // если нажата клавиша enter
-          answer =  eval(+operandFirst + operator + +operandSecond);
-          display.value = answer;
-        break;
+        case "=":
+          enterPress();                          // если нажата клавиша enter                         
+          break;
     }
     
   } else {
-    answer =  eval(+operandFirst + operator + +operandSecond);
+    if(operator === ""){
+      answer =  eval(+operandFirst);
+      display.value = answer;
+    }  else {
+      answer =  eval(+operandFirst + operator + +operandSecond);
+      display.value = answer;
+    } 
     switch (o) {
       case "+":
         operandFirst = answer;                // заносим первый операнд в ответ 
@@ -195,22 +183,48 @@ function operatorChange(o) {
         operandSecond = "";                   // обнуляем второй операнд
         break;
       case "=":
-        if (operandSecond === "") {
-          if (operandFirst === "") {
-            display.value = "вводите значения";
-          }
-          operandSecond = "0";
-        }                                  // если нажата клавиша enter
-          answer =  eval(+operandFirst + operator + +operandSecond);
-          display.value = answer;
+        enterPress();                          // если нажата клавиша enter                         
         break;
     }
   }
+  display.value = answer;
+  if (display.value === "NaN") {
+    display.value = "не корректная запись";
+  } else
+  {
+    if (display.value === "Infinity" || display.value === "-Infinity") {
+      display.value = "на ноль делить нельзя";
+   }
+  }
+}
+
+function enterPress() {
+  enterFlag = true;
+      if (operandSecond === "") {
+        if (operandFirst === "") {
+          display.value = "вводите значения";
+        }
+        operandSecond = "";
+      }  
+      if(operator === ""){
+        enterFlag = false;
+        answer =  eval(+operandFirst);
+        display.value = answer;
+      }  else {
+        enterFlag = false;
+        answer =  eval(+operandFirst + operator + +operandSecond);
+        display.value = answer;
+      }  
 }
 
 // проверяет не пустой ли оператор и от условия заносит в первую или во вторую переменную
 function pressNumber(n) {
-
+if (enterFlag) {
+  operandFirst = "";
+  operator = "";
+  operandSecond = "";
+  enterFlag = false;
+}
   if (operator !== "") {                      // цифры вводятся во второй операнд
     if (operandSecond === "0") {
       if (n === ".")  {
@@ -224,7 +238,7 @@ function pressNumber(n) {
     } else {
        if (n === ".")  {
           if (operandSecond.indexOf(".") === -1) { 
-            operandSecond += "0" + `${n}`; 
+            operandSecond += `${n}`; 
         } 
       } 
       else {
@@ -236,9 +250,11 @@ function pressNumber(n) {
   else {                                    // цифры вводятся в первый операнд
     if (operandFirst === "0") {
       if (n === ".")  {
-         if (operandFirst.indexOf(".") === -1) {  
+        if (operandFirst.indexOf(".") === -1) {  
           operandFirst = "0"+`${n}`; 
-        } 
+        } else {
+            
+        }
       } 
       else {
         operandFirst = `${n}`;
@@ -246,7 +262,7 @@ function pressNumber(n) {
     } else {
        if (n === ".")  {
           if (operandFirst.indexOf(".") === -1) { 
-            operandFirst += "0" + `${n}`; 
+          operandFirst += `${n}`; 
         } 
       } 
       else {
@@ -255,10 +271,3 @@ function pressNumber(n) {
     }
   }
 }
-
-/** 
- *  
- * 
- *     
- * 
-*/
