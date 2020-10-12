@@ -240,7 +240,10 @@ if (enterFlag) {
     } else {
        if (n === ".")  {
           if (operandSecond.indexOf(".") === -1) { 
-            operandSecond += `${n}`; 
+            operandSecond += `${n}`;
+            if (operandSecond === ".") {
+              operandSecond = "0."
+            }  
         } 
       } 
       else {
@@ -264,7 +267,10 @@ if (enterFlag) {
     } else {
        if (n === ".")  {
           if (operandFirst.indexOf(".") === -1) { 
-          operandFirst += `${n}`; 
+          operandFirst += `${n}`;
+          if (operandFirst === ".") {
+            operandFirst = "0."
+          } 
         } 
       } 
       else {
