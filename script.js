@@ -7,7 +7,8 @@ let operandSecond = "";                                        // хранени
 let display = document.querySelector("#display-result");       // Выбор дисплэя ввода
 let displayMemory = document.querySelector("#display-memory"); // Выбор дисплэя истории
 let answer = "";                                               // хранение ответа
-let enterFlag = false;                                         // был ли нажато равно 
+let enterFlag = false;                                         // был ли нажато равно
+let operandSecondMemory = "";                                  // хранит второй оператор в памяти                                   
 
 function buttonPress(e) {
   if (e.keyCode === undefined) {
@@ -115,6 +116,7 @@ function buttonPress(e) {
       
     break;
   }
+  
    // вычисления после нажатия кнопки
   displayMemory.value = operandFirst + "" + operator + "" + operandSecond + "";
 }
